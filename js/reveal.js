@@ -2,17 +2,17 @@
  * reveal.js 1.5 r7
  * http://lab.hakim.se/reveal-js
  * MIT licensed
- * 
+ *
  * Copyright (C) 2012 Hakim El Hattab, http://hakim.se
  */
 var Reveal = (function(){
-	
+
 	var HORIZONTAL_SLIDES_SELECTOR = '.reveal .slides>section',
 		VERTICAL_SLIDES_SELECTOR = '.reveal .slides>section.present>section',
 
 		IS_TOUCH_DEVICE = !!( 'ontouchstart' in window ),
 
-		// Configurations defaults, can be overridden at initialization time 
+		// Configurations defaults, can be overridden at initialization time
 		config = {
 			// Display controls in the bottom right corner
 			controls: true,
@@ -29,7 +29,7 @@ var Reveal = (function(){
 			// Loop the presentation
 			loop: false,
 
-			// Number of milliseconds between automatically proceeding to the 
+			// Number of milliseconds between automatically proceeding to the
 			// next slide, disabled when set to 0
 			autoSlide: 0,
 
@@ -54,8 +54,8 @@ var Reveal = (function(){
 		previousSlide,
 		currentSlide,
 
-		// Slides may hold a data-state attribute which we pick up and apply 
-		// as a class to the body. This list contains the combined state of 
+		// Slides may hold a data-state attribute which we pick up and apply
+		// as a class to the body. This list contains the combined state of
 		// all current slides.
 		state = [],
 
@@ -63,13 +63,13 @@ var Reveal = (function(){
 		dom = {},
 
 		// Detect support for CSS 3D transforms
-		supports3DTransforms =  document.body.style['WebkitPerspective'] !== undefined || 
+		supports3DTransforms =  document.body.style['WebkitPerspective'] !== undefined ||
                         		document.body.style['MozPerspective'] !== undefined ||
                         		document.body.style['msPerspective'] !== undefined ||
                         		document.body.style['OPerspective'] !== undefined ||
                         		document.body.style['perspective'] !== undefined,
-        
-        supports2DTransforms =  document.body.style['WebkitTransform'] !== undefined || 
+
+        supports2DTransforms =  document.body.style['WebkitTransform'] !== undefined ||
                         		document.body.style['MozTransform'] !== undefined ||
                         		document.body.style['msTransform'] !== undefined ||
                         		document.body.style['OTransform'] !== undefined ||
@@ -77,7 +77,7 @@ var Reveal = (function(){
 
         // Detect support for elem.classList
         supportsClassList = !!document.body.classList;
-		
+
 		// Throttles mouse wheel navigation
 		mouseWheelTimeout = 0,
 
@@ -96,18 +96,18 @@ var Reveal = (function(){
 			handled: false,
 			threshold: 40
 		};
-	
-	
+
+
 	/**
 	 * Starts up the slideshow by applying configuration
 	 * options and binding various events.
 	 */
 	function initialize( options ) {
-		
+
 		if( ( !supports2DTransforms && !supports3DTransforms ) || !supportsClassList ) {
 			document.body.setAttribute( 'class', 'no-transforms' );
 
-			// If the browser doesn't support core features we won't be 
+			// If the browser doesn't support core features we won't be
 			// using JavaScript to control the presentation
 			return;
 		}
@@ -116,7 +116,7 @@ var Reveal = (function(){
 		dom.wrapper = document.querySelector( '.reveal' );
 		dom.progress = document.querySelector( '.reveal .progress' );
 		dom.progressbar = document.querySelector( '.reveal .progress span' );
-		
+
 		if ( config.controls ) {
 			dom.controls = document.querySelector( '.reveal .controls' );
 			dom.controlsLeft = document.querySelector( '.reveal .controls .left' );
@@ -149,7 +149,7 @@ var Reveal = (function(){
 			window.addEventListener( 'load', removeAddressBar, false );
 			window.addEventListener( 'orientationchange', removeAddressBar, false );
 		}
-		
+
 	}
 
 	function configure() {
@@ -186,9 +186,9 @@ var Reveal = (function(){
 	}
 
 	function addEventListeners() {
-		//document.addEventListener( 'touchstart', onDocumentTouchStart, false );
-		//document.addEventListener( 'touchmove', onDocumentTouchMove, false );
-		//document.addEventListener( 'touchend', onDocumentTouchEnd, false );
+		document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+		document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+		document.addEventListener( 'touchend', onDocumentTouchEnd, false );
 		window.addEventListener( 'hashchange', onWindowHashChange, false );
 
 		if( config.keyboard ) {
@@ -199,7 +199,7 @@ var Reveal = (function(){
 			dom.controlsLeft.addEventListener( 'click', preventAndForward( navigateLeft ), false );
 			dom.controlsRight.addEventListener( 'click', preventAndForward( navigateRight ), false );
 			dom.controlsUp.addEventListener( 'click', preventAndForward( navigateUp ), false );
-			dom.controlsDown.addEventListener( 'click', preventAndForward( navigateDown ), false );	
+			dom.controlsDown.addEventListener( 'click', preventAndForward( navigateDown ), false );
 		}
 	}
 
@@ -209,7 +209,7 @@ var Reveal = (function(){
 		document.removeEventListener( 'touchmove', onDocumentTouchMove, false );
 		document.removeEventListener( 'touchend', onDocumentTouchEnd, false );
 		window.removeEventListener( 'hashchange', onWindowHashChange, false );
-		
+
 		if ( config.controls && dom.controls ) {
 			dom.controlsLeft.removeEventListener( 'click', preventAndForward( navigateLeft ), false );
 			dom.controlsRight.removeEventListener( 'click', preventAndForward( navigateRight ), false );
@@ -219,7 +219,7 @@ var Reveal = (function(){
 	}
 
 	/**
-	 * Extend object a with the properties of object b. 
+	 * Extend object a with the properties of object b.
 	 * If there's a conflict, object b takes precedence.
 	 */
 	function extend( a, b ) {
@@ -230,8 +230,8 @@ var Reveal = (function(){
 
 	/**
 	 * Measures the distance in pixels between point a
-	 * and point b. 
-	 * 
+	 * and point b.
+	 *
 	 * @param {Object} a point with x/y properties
 	 * @param {Object} b point with x/y properties
 	 */
@@ -243,10 +243,10 @@ var Reveal = (function(){
 	}
 
 	/**
-	 * Prevents an events defaults behavior calls the 
+	 * Prevents an events defaults behavior calls the
 	 * specified delegate.
-	 * 
-	 * @param {Function} delegate The method to call 
+	 *
+	 * @param {Function} delegate The method to call
 	 * after the wrapper has been executed
 	 */
 	function preventAndForward( delegate ) {
@@ -257,7 +257,7 @@ var Reveal = (function(){
 	}
 
 	/**
-	 * Causes the address bar to hide on mobile devices, 
+	 * Causes the address bar to hide on mobile devices,
 	 * more vertical space ftw.
 	 */
 	function removeAddressBar() {
@@ -265,25 +265,25 @@ var Reveal = (function(){
 			window.scrollTo( 0, 1 );
 		}, 0 );
 	}
-	
+
 	/**
 	 * Handler for the document level 'keydown' event.
-	 * 
+	 *
 	 * @param {Object} event
 	 */
 	function onDocumentKeyDown( event ) {
-		// FFT: Use document.querySelector( ':focus' ) === null 
+		// FFT: Use document.querySelector( ':focus' ) === null
 		// instead of checking contentEditable?
 
-		// Disregard the event if the target is editable or a 
+		// Disregard the event if the target is editable or a
 		// modifier is present
 		if ( event.target.contentEditable != 'inherit' || event.shiftKey || event.altKey || event.ctrlKey || event.metaKey ) return;
-				
+
 		var triggered = false;
 
 		switch( event.keyCode ) {
 			// p, page up
-			case 80: case 33: navigatePrev(); triggered = true; break; 
+			case 80: case 33: navigatePrev(); triggered = true; break;
 			// n, page down
 			case 78: case 34: navigateNext(); triggered = true; break;
 			// h, left
@@ -304,18 +304,18 @@ var Reveal = (function(){
 			case 13: if( overviewIsActive() ) { deactivateOverview(); triggered = true; } break;
 		}
 
-		// If the input resulted in a triggered action we should prevent 
+		// If the input resulted in a triggered action we should prevent
 		// the browsers default behavior
 		if( triggered ) {
 			event.preventDefault();
 		}
 		else if ( event.keyCode === 27 && supports3DTransforms ) {
 			toggleOverview();
-	
+
 			event.preventDefault();
 		}
 
-		// If auto-sliding is enabled we need to cue up 
+		// If auto-sliding is enabled we need to cue up
 		// another timeout
 		cueAutoSlide();
 
@@ -325,115 +325,115 @@ var Reveal = (function(){
 	 * Handler for the document level 'touchstart' event,
 	 * enables support for swipe and pinch gestures.
 	// */
-	//function onDocumentTouchStart( event ) {
-	//	touch.startX = event.touches[0].clientX;
-	//	touch.startY = event.touches[0].clientY;
-	//	touch.startCount = event.touches.length;
+	function onDocumentTouchStart( event ) {
+		touch.startX = event.touches[0].clientX;
+		touch.startY = event.touches[0].clientY;
+		touch.startCount = event.touches.length;
 //
-	//	// If there's two touches we need to memorize the distance 
-	//	// between those two points to detect pinching
-	//	if( event.touches.length === 2 ) {
-	//		touch.startSpan = distanceBetween( {
-	//			x: event.touches[1].clientX,
-	//			y: event.touches[1].clientY
-	//		}, {
-	//			x: touch.startX,
-	//			y: touch.startY
-	//		} );
-	//	}
-	//}
-	//
-	///**
-	// * Handler for the document level 'touchmove' event.
-	// */
-	//function onDocumentTouchMove( event ) {
-	//	// Each touch should only trigger one action
-	//	if( !touch.handled ) {
-	//		var currentX = event.touches[0].clientX;
-	//		var currentY = event.touches[0].clientY;
+		// If there's two touches we need to memorize the distance
+		// between those two points to detect pinching
+		if( event.touches.length === 2 ) {
+			touch.startSpan = distanceBetween( {
+				x: event.touches[1].clientX,
+				y: event.touches[1].clientY
+			}, {
+				x: touch.startX,
+				y: touch.startY
+			} );
+		}
+	}
+
+	/**
+	 * Handler for the document level 'touchmove' event.
+	 */
+	function onDocumentTouchMove( event ) {
+		// Each touch should only trigger one action
+		if( !touch.handled ) {
+			var currentX = event.touches[0].clientX;
+			var currentY = event.touches[0].clientY;
 //
-	//		// If the touch started off with two points and still has 
-	//		// two active touches; test for the pinch gesture
-	//		if( event.touches.length === 2 && touch.startCount === 2 ) {
+			// If the touch started off with two points and still has
+			// two active touches; test for the pinch gesture
+			if( event.touches.length === 2 && touch.startCount === 2 ) {
 //
-	//			// The current distance in pixels between the two touch points
-	//			var currentSpan = distanceBetween( {
-	//				x: event.touches[1].clientX,
-	//				y: event.touches[1].clientY
-	//			}, {
-	//				x: touch.startX,
-	//				y: touch.startY
-	//			} );
+				// The current distance in pixels between the two touch points
+				var currentSpan = distanceBetween( {
+					x: event.touches[1].clientX,
+					y: event.touches[1].clientY
+				}, {
+					x: touch.startX,
+					y: touch.startY
+				} );
 //
-	//			// If the span is larger than the desire amount we've got 
-	//			// ourselves a pinch
-	//			if( Math.abs( touch.startSpan - currentSpan ) > touch.threshold ) {
-	//				touch.handled = true;
+				// If the span is larger than the desire amount we've got
+				// ourselves a pinch
+				if( Math.abs( touch.startSpan - currentSpan ) > touch.threshold ) {
+					touch.handled = true;
 //
-	//				if( currentSpan < touch.startSpan ) {
-	//					activateOverview();
-	//				}
-	//				else {
-	//					deactivateOverview();
-	//				}
-	//			}
+					if( currentSpan < touch.startSpan ) {
+						activateOverview();
+					}
+					else {
+						deactivateOverview();
+					}
+				}
 //
-	//		}
-	//		// There was only one touch point, look for a swipe
-	//		else if( event.touches.length === 1 ) {
-	//			var deltaX = currentX - touch.startX,
-	//				deltaY = currentY - touch.startY;
+			}
+			// There was only one touch point, look for a swipe
+			else if( event.touches.length === 1 ) {
+				var deltaX = currentX - touch.startX,
+					deltaY = currentY - touch.startY;
 //
-	//			if( deltaX > touch.threshold && Math.abs( deltaX ) > Math.abs( deltaY ) ) {
-	//				touch.handled = true;
-	//				navigateLeft();
-	//			} 
-	//			else if( deltaX < -touch.threshold && Math.abs( deltaX ) > Math.abs( deltaY ) ) {
-	//				touch.handled = true;
-	//				navigateRight();
-	//			} 
-	//			else if( deltaY > touch.threshold ) {
-	//				touch.handled = true;
-	//				navigateUp();
-	//			} 
-	//			else if( deltaY < -touch.threshold ) {
-	//				touch.handled = true;
-	//				navigateDown();
-	//			}
-	//		}
+				if( deltaX > touch.threshold && Math.abs( deltaX ) > Math.abs( deltaY ) ) {
+					touch.handled = true;
+					navigateLeft();
+				}
+				else if( deltaX < -touch.threshold && Math.abs( deltaX ) > Math.abs( deltaY ) ) {
+					touch.handled = true;
+					navigateRight();
+				}
+				else if( deltaY > touch.threshold ) {
+					touch.handled = true;
+					navigateUp();
+				}
+				else if( deltaY < -touch.threshold ) {
+					touch.handled = true;
+					navigateDown();
+				}
+			}
 //
-	//		event.preventDefault();
-	//	}
-	//}
+			event.preventDefault();
+		}
+	}
 //
 	///**
 	// * Handler for the document level 'touchend' event.
 	// */
-	//function onDocumentTouchEnd( event ) {
-	//	touch.handled = false;
-	//}
+	function onDocumentTouchEnd( event ) {
+		touch.handled = false;
+	}
 
 	/**
-	 * Handles mouse wheel scrolling, throttled to avoid 
+	 * Handles mouse wheel scrolling, throttled to avoid
 	 * skipping multiple slides.
 	 */
 	function onDocumentMouseScroll( event ){
-		clearTimeout( mouseWheelTimeout );
-
-		mouseWheelTimeout = setTimeout( function() {
-			var delta = event.detail || -event.wheelDelta;
-			if( delta > 0 ) {
-				navigateNext();
-			}
-			else {
-				navigatePrev();
-			}
-		}, 100 );
+	//	clearTimeout( mouseWheelTimeout );
+//
+	//	mouseWheelTimeout = setTimeout( function() {
+	//		var delta = event.detail || -event.wheelDelta;
+	//		if( delta > 0 ) {
+	//			navigateNext();
+	//		}
+	//		else {
+	//			navigatePrev();
+	//		}
+	//	}, 100 );
 	}
-	
+
 	/**
 	 * Handler for the window level 'hashchange' event.
-	 * 
+	 *
 	 * @param {Object} event
 	 */
 	function onWindowHashChange( event ) {
@@ -449,7 +449,7 @@ var Reveal = (function(){
 
 	        for( var i = 0, len = nodes.length; i < len; i++ ) {
 	            var node = nodes[i];
-	            
+
 	            if( node.textContent && !node.querySelector( 'img' ) && ( !node.className || !node.classList.contains( node, 'roll' ) ) ) {
 	                node.classList.add( 'roll' );
 	                node.innerHTML = '<span data-title="'+ node.text +'">' + node.innerHTML + '</span>';
@@ -459,14 +459,14 @@ var Reveal = (function(){
 	}
 
 	/**
-	 * Displays the overview of slides (quick nav) by 
+	 * Displays the overview of slides (quick nav) by
 	 * scaling down and arranging all slide elements.
-	 * 
-	 * Experimental feature, might be dropped if perf 
+	 *
+	 * Experimental feature, might be dropped if perf
 	 * can't be improved.
 	 */
 	function activateOverview() {
-		
+
 		dom.wrapper.classList.add( 'overview' );
 
 		var horizontalSlides = Array.prototype.slice.call( document.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR ) );
@@ -474,7 +474,7 @@ var Reveal = (function(){
 		for( var i = 0, len1 = horizontalSlides.length; i < len1; i++ ) {
 			var hslide = horizontalSlides[i],
 				htransform = 'translateZ(-2500px) translate(' + ( ( i - indexh ) * 105 ) + '%, 0%)';
-			
+
 			hslide.setAttribute( 'data-index-h', i );
 			hslide.style.display = 'block';
 			hslide.style.WebkitTransform = htransform;
@@ -482,12 +482,12 @@ var Reveal = (function(){
 			hslide.style.msTransform = htransform;
 			hslide.style.OTransform = htransform;
 			hslide.style.transform = htransform;
-		
+
 			if( !hslide.classList.contains( 'stack' ) ) {
 				// Navigate to this slide on click
 				hslide.addEventListener( 'click', onOverviewSlideClicked, true );
 			}
-	
+
 			var verticalSlides = Array.prototype.slice.call( hslide.querySelectorAll( 'section' ) );
 
 			for( var j = 0, len2 = verticalSlides.length; j < len2; j++ ) {
@@ -506,10 +506,10 @@ var Reveal = (function(){
 				// Navigate to this slide on click
 				vslide.addEventListener( 'click', onOverviewSlideClicked, true );
 			}
-			
+
 		}
 	}
-	
+
 	/**
 	 * Exits the slide overview and enters the currently
 	 * active slide.
@@ -537,7 +537,7 @@ var Reveal = (function(){
 
 	/**
 	 * Checks if the overview is currently active.
-	 * 
+	 *
 	 * @return {Boolean} true if the overview is active,
 	 * false otherwise
 	 */
@@ -549,7 +549,7 @@ var Reveal = (function(){
 	 * Invoked when a slide is and we're in the overview.
 	 */
 	function onOverviewSlideClicked( event ) {
-		// TODO There's a bug here where the event listeners are not 
+		// TODO There's a bug here where the event listeners are not
 		// removed after deactivating the overview.
 		if( overviewIsActive() ) {
 			event.preventDefault();
@@ -566,23 +566,23 @@ var Reveal = (function(){
 	/**
 	 * Updates one dimension of slides by showing the slide
 	 * with the specified index.
-	 * 
+	 *
 	 * @param {String} selector A CSS selector that will fetch
 	 * the group of slides we are working with
 	 * @param {Number} index The index of the slide that should be
 	 * shown
-	 * 
+	 *
 	 * @return {Number} The index of the slide that is now shown,
-	 * might differ from the passed in index if it was out of 
+	 * might differ from the passed in index if it was out of
 	 * bounds.
 	 */
 	function updateSlides( selector, index ) {
-		
+
 		// Select all slides and convert the NodeList result to
 		// an array
 		var slides = Array.prototype.slice.call( document.querySelectorAll( selector ) ),
 			slidesLength = slides.length;
-		
+
 		if( slidesLength ) {
 
 			// Should the index loop?
@@ -593,14 +593,14 @@ var Reveal = (function(){
 					index = slidesLength + index;
 				}
 			}
-			
+
 			// Enforce max and minimum index bounds
 			index = Math.max( Math.min( index, slidesLength - 1 ), 0 );
-			
+
 			for( var i = 0; i < slidesLength; i++ ) {
 				var slide = slides[i];
 
-				// Optimization; hide all slides that are three or more steps 
+				// Optimization; hide all slides that are three or more steps
 				// away from the present slide
 				if( overviewIsActive() === false ) {
 					// The distance loops so that it measures 1 between the first
@@ -640,18 +640,18 @@ var Reveal = (function(){
 			}
 		}
 		else {
-			// Since there are no slides we can't be anywhere beyond the 
+			// Since there are no slides we can't be anywhere beyond the
 			// zeroth index
 			index = 0;
 		}
-		
+
 		return index;
-		
+
 	}
-	
+
 	/**
 	 * Updates the visual slides to represent the currently
-	 * set indices. 
+	 * set indices.
 	 */
 	function slide( h, v ) {
 		// Remember where we were at before
@@ -672,7 +672,7 @@ var Reveal = (function(){
 
 		// Apply the new state
 		stateLoop: for( var i = 0, len = state.length; i < len; i++ ) {
-			// Check if this state existed on the previous slide. If it 
+			// Check if this state existed on the previous slide. If it
 			// did, we will avoid adding it repeatedly.
 			for( var j = 0; j < stateBefore.length; j++ ) {
 				if( stateBefore[j] === state[i] ) {
@@ -703,7 +703,7 @@ var Reveal = (function(){
 		}
 
 		updateControls();
-		
+
 		clearTimeout( writeURLTimeout );
 		writeURLTimeout = setTimeout( writeURL, 1500 );
 
@@ -721,7 +721,7 @@ var Reveal = (function(){
 		// Dispatch an event if the slide changed
 		if( indexh !== indexhBefore || indexv !== indexvBefore ) {
 			dispatchEvent( 'slidechanged', {
-				'indexh': indexh, 
+				'indexh': indexh,
 				'indexv': indexv,
 				'previousSlide': previousSlide,
 				'currentSlide': currentSlide
@@ -732,8 +732,8 @@ var Reveal = (function(){
 			previousSlide = null;
 		}
 
-		// Solves an edge case where the previous slide maintains the 
-		// 'present' class when navigating between adjacent vertical 
+		// Solves an edge case where the previous slide maintains the
+		// 'present' class when navigating between adjacent vertical
 		// stacks
 		if( previousSlide ) {
 			previousSlide.classList.remove( 'present' );
@@ -747,7 +747,7 @@ var Reveal = (function(){
 		if ( !config.controls || !dom.controls ) {
 			return;
 		}
-		
+
 		var routes = availableRoutes();
 
 		// Remove the 'enabled' class from all directions
@@ -763,7 +763,7 @@ var Reveal = (function(){
 
 	/**
 	 * Determine what available routes there are for navigation.
-	 * 
+	 *
 	 * @return {Object} containing four booleans: left/right/up/down
 	 */
 	function availableRoutes() {
@@ -777,7 +777,7 @@ var Reveal = (function(){
 			down: indexv < verticalSlides.length - 1
 		};
 	}
-	
+
 	/**
 	 * Reads the current URL (hash) and navigates accordingly.
 	 */
@@ -791,26 +791,26 @@ var Reveal = (function(){
 
 		navigateTo( h, v );
 	}
-	
+
 	/**
 	 * Updates the page URL (hash) to reflect the current
-	 * state. 
+	 * state.
 	 */
 	function writeURL() {
 		if( config.history ) {
 			var url = '/';
-			
+
 			// Only include the minimum possible number of components in
 			// the URL
 			if( indexh > 0 || indexv > 0 ) url += indexh;
 			if( indexv > 0 ) url += '/' + indexv;
-			
+
 			window.location.hash = url;
 		}
 	}
 
 	/**
-	 * Dispatches an event of the specified type from the 
+	 * Dispatches an event of the specified type from the
 	 * reveal DOM element.
 	 */
 	function dispatchEvent( type, properties ) {
@@ -822,7 +822,7 @@ var Reveal = (function(){
 
 	/**
 	 * Navigate to the next slide fragment.
-	 * 
+	 *
 	 * @return {Boolean} true if there was a next fragment,
 	 * false otherwise
 	 */
@@ -855,7 +855,7 @@ var Reveal = (function(){
 
 	/**
 	 * Navigate to the previous slide fragment.
-	 * 
+	 *
 	 * @return {Boolean} true if there was a previous fragment,
 	 * false otherwise
 	 */
@@ -882,7 +882,7 @@ var Reveal = (function(){
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 
@@ -894,17 +894,17 @@ var Reveal = (function(){
 			autoSlideTimeout = setTimeout( navigateNext, config.autoSlide );
 		}
 	}
-	
+
 	/**
 	 * Triggers a navigation to the specified indices.
-	 * 
+	 *
 	 * @param {Number} h The horizontal index of the slide to show
 	 * @param {Number} v The vertical index of the slide to show
 	 */
 	function navigateTo( h, v ) {
 		slide( h, v );
 	}
-	
+
 	function navigateLeft() {
 		// Prioritize hiding fragments
 		if( overviewIsActive() || previousFragment() === false ) {
@@ -964,7 +964,7 @@ var Reveal = (function(){
 			availableRoutes().down ? navigateDown() : navigateRight();
 		}
 
-		// If auto-sliding is enabled we need to cue up 
+		// If auto-sliding is enabled we need to cue up
 		// another timeout
 		cueAutoSlide();
 	}
@@ -980,7 +980,7 @@ var Reveal = (function(){
 			activateOverview();
 		}
 	}
-	
+
 	// Expose some methods publicly
 	return {
 		initialize: initialize,
@@ -999,9 +999,9 @@ var Reveal = (function(){
 
 		// Returns the indices of the current slide
 		getIndices: function() {
-			return { 
-				h: indexh, 
-				v: indexv 
+			return {
+				h: indexh,
+				v: indexv
 			};
 		},
 
@@ -1034,6 +1034,6 @@ var Reveal = (function(){
 			( dom.wrapper || document.querySelector( '.reveal' ) ).removeEventListener( type, listener, useCapture );
 		}
 	};
-	
+
 })();
 
