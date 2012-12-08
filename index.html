@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>LearnHackYOW 2012</title>
+
+    <meta name="description" content="An easy to use CSS 3D slideshow tool for quickly creating good looking HTML presentations.">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+  </head>
+
+
+  <body>
+    <!--
+    Hey! I just met you
+    And this is crazy
+    Some here's some data
+    So map it maybe?
+
+    If it's hard to come by
+    In your citttttay
+    Then run a hackfest
+    But don't make it shitty.
+    -->
+
+    <div class="reveal">
+
+      <!-- Used to fade in a background when a specific slide state is reached -->
+      <div class="state-background"></div>
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+        <section>
+          <img id="poster" src="images/logo.jpeg"></img>
+        </section>
+
+        <section>
+          <h1>Housekeeping</h1>
+        </section>
+
+        <section>
+          <h1>Open Data</h1>
+          <h3 class="fragment">Wat do?</h3>
+        </section>
+
+        <section>
+          <img src="images/bus.jpeg"></img>
+        </section>
+
+        <section id="promo" data-state="promo">
+          <h2>ALL FREE!</h2>
+          <p class="desc">Find out when your bus will <u>actually</u> arrive!</p>
+          <img class="mainimg" src="images/bus2.jpeg"/>
+          <img class="tvimg no-border" src="images/tv.png"/>
+          <h1>TEXT 560560</h1>
+        </section>
+
+        <section>
+          <h3><a href="http://www.octranspo1.com/mobile/community_app_gallery" target="_blank">OCTranspo App Gallery</a></h3>
+            <a href="http://www.octranspo1.com/mobile/community_app_gallery" target="_blank"><img src="images/ocapps.png"></img></a>
+        </section>
+
+        <section>
+          <h3><a href="http://www.octranspo1.com/developers" target="_blank">OCTranspo Developer Resources</a></h3>
+            <a href="http://www.octranspo1.com/developers" target="_blank"><img src="images/ocdev.png"></img></a>
+        </section>
+
+
+        <section>
+          <h3>Open Data is...</h3>
+          <br/>
+          <h2 class='fragment'>Freely Accessible</h2>
+          <div class='fragment'>
+            <h2>And</h2>
+            <h2>Machine Readable</h2>
+          </div>
+          <h3 class="fragment">(and free to distribute/modify)</h3>
+        </section>
+
+        <section>
+          <h3>Mmmm...raw data</h3>
+          <img src="images/raw.png"></img>
+        </section>
+
+        <section>
+          <h3>Mmmm...raw data on a map</h3>
+          <img src="images/watermap.png"></img>
+        </section>
+
+        <section>
+          <h2><a href="http://recollect.net" target="_blank">Recollect</a></h2>
+          <img src="images/recollect.jpeg"></img>
+        </section>
+
+        <section>
+          <h2><a href="http://parkfinder.ottawadogblog.ca/" target="_blank">Dog park finder</a></h2>
+          <img src="images/dog.png"></img>
+        </section>
+
+        <section>
+          <section>
+            <h1>Where is this data?</h1>
+          </section>
+          <section>
+            <h2><a href="http://ottawa.ca/en/mobile-apps-and-open-data/open-data-ottawa/data-catalogue/data-catalogue" target="_blank">Municipal</a></h2>
+            <a href="http://ottawa.ca/en/mobile-apps-and-open-data/open-data-ottawa/data-catalogue/data-catalogue" target="_blank"><img src="images/ottawa.png"></img></a>
+          </section>
+          <section>
+            <h2><a href="http://www.ontario.ca/government/government-ontario-open-data" target="_blank">Provincial</a></h2>
+            <a href="http://www.ontario.ca/government/government-ontario-open-data" target="_blank"><img src="images/provincial.png"></img></a>
+          </section>
+          <section>
+            <h2><a href="http://data.gc.ca" target="_blank">Federal</a></h2>
+            <a href="http://data.gc.ca" target="_blank"><img src="images/federal.png"></img></a>
+          </section>
+          <section>
+            <h2><a href="http://data.worldbank.org/topic" target="_blank">International</a></h2>
+            <a href="http://data.worldbank.org/topic" target="_blank"><img src="images/worldbank.png"></img></a>
+          </section>
+          <section>
+            <h2><a href="http://www.kaggle.com/competitions" target="_blank">Corporations</a></h2>
+            <a href="http://www.kaggle.com/competitions" target="_blank"><img src="images/corporate.png"></img></a>
+          </section>
+          <section>
+            <h2><a href="http://www-958.ibm.com/software/data/cognos/manyeyes/datasets/the-characteristics-of-my-familys-so/versions/1" target="_blank">Citizens</a></h2>
+            <a href="http://www-958.ibm.com/software/data/cognos/manyeyes/datasets/the-characteristics-of-my-familys-so/versions/1" target="_blank"><img src="images/citizens.png"></img></a>
+          </section>
+        </section>
+
+
+        <section>
+          <section>
+            <h2>10:30 - 12:30</h2>
+            <h1>Sessions</h1>
+            <h2></h2>
+          </section>
+
+          <section class="sessions">
+            <h3>10:30 - Champlain Room</h3>
+            <h2>Beautiful Data</h2>
+            <h3>By Amanda Shendruk</h3>
+            <img src="images/shendruk.jpeg"/>
+          </section>
+
+          <section class="sessions">
+            <h3>10:30 - 2nd Floor</h3>
+            <h2>Mobile Usability</h2>
+            <h3>By Thomas Gohard</h3>
+            <img src="images/gohard.jpeg"/>
+          </section>
+
+          <section class="sessions">
+            <h3>11:30 - Champlain Room</h3>
+            <h2>Google Fusion Tables</h2>
+            <h3>By Edward & Daniel</h3>
+            <div class="carousel">
+              <img style="position:absolute; top:0px;left:0px;width: 450px;height:450px" src="images/beauchamp.png"/>
+              <img style="position:absolute; top:0px;left:0px;width:450px" class="imagerot" src="images/edward.png"/>
+            </div>
+
+          </section>
+
+          <section class="sessions">
+            <h3>11:30 - 4th Floor</h3>
+            <h2>Open Data Entrepreneurship</h2>
+            <h3>By Luke Closs</h3>
+            <img src="images/luke.png"/>
+          </section>
+
+          <section>
+            <h2>12:30</h2>
+            <h1>Lunch</h1>
+            <h2></h2>
+          </section>
+
+          <section>
+            <h2>1:15</h2>
+            <h1>City Presentation</h1>
+            <h2></h2>
+          </section>
+
+          <section>
+            <h2>12:30</h2>
+            <h1>Speed Dating</h1>
+            <h2></h2>
+          </section>
+
+          <section>
+            <h2>2:00</h2>
+            <h1>Hacking</h1>
+            <h2></h2>
+          </section>
+
+          <section>
+            <h2>4:30</h2>
+            <h1>Demos</h1>
+            <h2></h2>
+          </section>
+
+          <section>
+            <h2>5:00</h2>
+            <h1>After Party</h1>
+            <h2></h2>
+          </section>
+
+        </section>
+
+        <section>
+          <h1>Thanks!</h1>
+          <h2>Mary-Beth Baker</h2>
+          <h2>Richard Akerman</h2>
+          <h2>Rob Giggey</h2>
+        </section>
+
+        <section>
+          <h1>Let's do this!</h1>
+        </section>
+
+
+
+      </div>
+
+
+
+      <!-- Presentation progress bar -->
+      <div class="progress"><span></span></div>
+
+
+    <script src="lib/js/head.min.js"></script>
+
+    <script>
+      // Scripts that should be loaded before initializing
+      var scripts = [];
+
+      // If the browser doesn't support classList, load a polyfill
+      if( !document.body.classList ) {
+        scripts.push( 'lib/js/classList.js' );
+      }
+
+      // Load markdown parser if there are slides defined using markdown
+      if( document.querySelector( '[data-markdown]' ) ) {
+        scripts.push( 'lib/js/showdown.js' );
+        scripts.push( 'lib/js/data-markdown.js' );
+      }
+
+      scripts.push( 'js/reveal.js' );
+
+      // Load the scripts and, when completed, initialize reveal.js
+      head.js.apply( null, scripts.concat([function() {
+
+        // Fires when a slide with data-state=customevent is activated
+        Reveal.addEventListener( 'customevent', function() {
+          console.log( '"customevent" has fired' );
+        } );
+
+        // Fires each time a new slide is activated
+        Reveal.addEventListener( 'slidechanged', function( event ) {
+          // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+        } );
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+          progress: true,
+          history: true,
+          mousewheel: false,
+          rollingLinks: false,
+
+          theme: 'beige', // default/neon/beige
+          transition: 'linear' // default/cube/page/concave/linear(2d)
+        });
+
+      }]));
+
+      // Load highlight.js for syntax highlighting of code samples
+      head.js( 'lib/js/highlight.js', function() {
+        hljs.initHighlightingOnLoad();
+      } );
+    </script>
+
+  </body>
+</html>
